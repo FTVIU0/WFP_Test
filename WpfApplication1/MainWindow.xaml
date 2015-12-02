@@ -1,0 +1,62 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="331" Width="508">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open"
+                        Executed="OpenCmdExecuted"
+                        CanExecute="OpenCmdCanExecute"/>
+        <CommandBinding Command="ApplicationCommands.Save"
+                        Executed="SaveCmdExecuted"
+                        CanExecute="SaveCmdCanExecute"/>
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="False">
+        <Menu x:Name="menu" Height="20" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" Background="White">
+            <MenuItem Header="_File">
+                <MenuItem Command="ApplicationCommands.Open"/>
+                <MenuItem Command="ApplicationCommands.Save"/>
+                <Separator/>
+                <MenuItem Header="_Exit" HorizontalAlignment="Left" Width="144" Click="FileExit_Click" MouseEnter="MouseEnterExitArea" MouseLeave="MouseLeaveArea"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Command="ApplicationCommands.Copy"/>
+                <MenuItem Command="ApplicationCommands.Cut"/>
+                <MenuItem Command="ApplicationCommands.Paste"/>
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="_Spelling Hints" HorizontalAlignment="Left" Width="144" Click="ToolsSpellingHints_Click" MouseEnter="MouseEnterTooslHintsArea" MouseLeave="MouseLeaveArea"/>
+            </MenuItem>
+        </Menu>
+        <ToolBar DockPanel.Dock="Top">
+            <Button Content="Exit" Click="FileExit_Click" MouseEnter="MouseEnterExitArea"/>
+            <Separator/>
+            <Button Content="Check" Click="ToolsSpellingHints_Click" MouseEnter="MouseEnterTooslHintsArea" MouseLeave="MouseLeaveArea"/>
+        </ToolBar>
+        <StatusBar DockPanel.Dock="Bottom" Background="Beige">
+            <StatusBarItem>
+                <TextBlock Name="startBarText" Text="Ready"/>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid Height="233" VerticalAlignment="Top" Width="498">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="169*"/>
+                <ColumnDefinition Width="330*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="169">
+                <Label x:Name="label" Content="Spelling Hints"/>
+                <Expander x:Name="expander" Header="Try these" IsExpanded="True">
+                    <Label x:Name="label1" Content="Label" HorizontalAlignment="Left" Margin="23,0,0,0"/>
+                </Expander>
+            </StackPanel>
+            <TextBox x:Name="txtData" Grid.Column="1" HorizontalAlignment="Left" Height="213" TextWrapping="Wrap" VerticalAlignment="Top" Width="309" RenderTransformOrigin="0.071,0.13" SpellCheck.IsEnabled="True" AcceptsReturn="True" FontSize="18.667" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="10,10,0,0">
+                <TextBox.BorderBrush>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
+                </TextBox.BorderBrush>
+            </TextBox>
+        </Grid>
+    </DockPanel>
+</Window>
