@@ -103,6 +103,7 @@ namespace WpfApplication1
         private void SaveCmdCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+            //Test
         }
 
         private void SaveCmdExecuted(object sender, ExecutedRoutedEventArgs e)
